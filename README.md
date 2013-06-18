@@ -25,8 +25,6 @@ Description
 
 3.由于Jbi不属于SU，虽然JbiCommand实现SuCommand，仅为方便统一SA内容修改步骤。
 
-4.本程序参考借鉴方神的SA代码批量复制程序进行改进
-
 Testing
 -------
 To run the tests:

@@ -6,7 +6,7 @@ Version 1.5
 
 Create Date:2013/5/20 10:57
 
-Author: liuguanchuang
+Author: haycco
 
 Useage
 ------

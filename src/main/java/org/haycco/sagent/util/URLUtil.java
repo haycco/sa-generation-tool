@@ -1,6 +1,6 @@
 /**
  * CopyRright (c) 2000-2011:   haycco                                 
- * Author：                    lgc                 
+ * Author：                    haycco                 
  * Create Date：               2011-8-24 上午8:33:02   
  * Version:                    1.0
  *
@@ -15,7 +15,7 @@ import java.net.URLDecoder;
 /**
  * Description: 安全的获取当前类的路径，URL辅助类
  * 
- * @author lgc
+ * @author haycco
  */
 @SuppressWarnings("rawtypes")
 public class URLUtil {
@@ -79,11 +79,6 @@ public class URLUtil {
             e.printStackTrace();
             return "";
         }
-    }
-
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        System.out.println(getClassFilePath(URLUtil.class));
-        System.out.println(getClassPath(URLUtil.class));
     }
 
 }

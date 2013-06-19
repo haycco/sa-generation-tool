@@ -2,9 +2,11 @@ Service Assemblies Generation Tool
 ==================================
 Name: sa-generation-tool(SA批量生成工具)
 
-Version 1.5
+Version 1.6
 
-Create Date:2013/5/20 10:57
+Create Date: 2013/5/20 10:57
+
+Update Date: 2013/6/19 21:28 
 
 Author: haycco
 

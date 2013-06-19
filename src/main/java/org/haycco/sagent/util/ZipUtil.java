@@ -1,6 +1,6 @@
 /**
  * CopyRright (C) 2000-2013:   YGsoft Inc. All Rights Reserved.
- * Author：                                lgc                
+ * Author：                                haycco                
  * Create Date：                         2013-5-17 下午7:16:03   
  * Version:                                 1.0
  */
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
@@ -22,15 +23,15 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Expand;
 import org.apache.tools.ant.taskdefs.Zip;
 import org.apache.tools.ant.types.FileSet;
-import org.dom4j.DocumentException;
 
 /**
  * Zip工具类，调用Ant的zip和unzip的API进行解压和压缩
  * 
- * @author lgc
+ * @author haycco
  */
 public class ZipUtil {
     
+    private final static Logger log = Logger.getAnonymousLogger();
     /**
      * ZIP压缩文件的后缀(.zip)
      */
@@ -54,7 +55,7 @@ public class ZipUtil {
             expand.setOverwrite(true);// 是否覆盖
             File f = new File(destDir);
             expand.setDest(f);
-            System.out.println("execute unzip (" +sourceZipFile.getName() + ") command...");
+            log.info("execute unzip (" +sourceZipFile.getName() + ") command...");
             expand.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +76,7 @@ public class ZipUtil {
         zip.setProject(project);
         File targetZipFile = new File(targetZip);
         zip.setDestFile(targetZipFile);// 设置生成的目标zip文件File对象
-        System.out.println("execute zip (" + targetZipFile.getName() + ") command...");
+        log.info("execute zip (" + targetZipFile.getName() + ") command...");
         FileSet fileSet = new FileSet();
         fileSet.setProject(project);
         fileSet.setDir(new File(sourceFile));// 设置将要进行压缩的源文件File对象
@@ -90,7 +91,6 @@ public class ZipUtil {
      * 
      * @param zipFilePath
      *            zip文件
-     * @throws DocumentException
      */
     public static Map<String, String> getServiceUnitComponentNameMap(String zipFilePath) {
         InputStream inputStream = null;

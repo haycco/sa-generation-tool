@@ -1,6 +1,6 @@
 /**
  * CopyRright (C) 2000-2013:   YGsoft Inc. All Rights Reserved.
- * Author：                                lgc                
+ * Author：                                haycco                
  * Create Date：                         2013-5-17 下午7:19:40   
  * Version:                                 1.0
  */
@@ -25,7 +25,7 @@ import org.jaxen.SimpleNamespaceContext;
 import org.jaxen.dom4j.Dom4jXPath;
 
 /**
- * @author lgc
+ * @author haycco
  */
 public class ServiceAssemblyXmlUtil {
 
@@ -118,12 +118,14 @@ public class ServiceAssemblyXmlUtil {
     }
 
     /**
-     * 更新camel组件的camel-context.xml文件 1,修改jbi相关的组件camel:from camel:to
-     * 2,修改jms相关的组件 camel:from camel:to 3,修改vm的名称 camel:from
+     * 更新camel组件的camel-context.xml文件 
+     * <li>1.修改jbi相关的组件camel:from camel:to</li>
+     * <li>2.修改jms相关的组件 camel:from camel:to</li> 
+     * <li>3.修改vm的名称 camel:from</li>
      * 
-     * @param camelDir
-     * @param startIndex
-     * @param serviceList
+     * @param doc 需要更新的Document对象
+     * @param startIndex 起始编号
+     * @param serviceList 需要更名的服务列表
      */
     public static Document updateCamelContextConfig(Document doc, int startIndex, List<String> serviceList) {
         try {

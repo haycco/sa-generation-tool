@@ -1,57 +1,83 @@
 /**
  * CopyRright (C) 2000-2013:   YGsoft Inc. All Rights Reserved.
- * Author：                                lgc                
+ * Author：                                haycco                
  * Create Date：                         2013-5-18 上午1:15:48   
  * Version:                                 1.0
  */
 package org.haycco.sagent.command;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 /**
- * @author lgc
+ * @author haycco
  */
 public abstract class SuCommand {
 
     protected SAXReader reader = new SAXReader();
-    // 当前编辑的XML Document
-    protected Document document = null;
-    // 当前SU需要处理的service列表
-    protected List<String> serviceList = null;
-    // 需要生产的SA文件夹
+    /**
+     * 当前编辑的XML Document
+     */
+    private Document document = null;
+    /**
+     * 当前SU需要处理的service列表
+     */
+    private List<String> serviceList = null;
+    /**
+     * 需要生产的SA文件夹
+     */
     protected String targetServiceAssemblyDir = null;
-   // 需要生产的SA文件夹
+    /**
+     * 需要生产的SA文件夹
+     */
     protected String sourceServiceAssemblyDir = null;
-    // 编号
+    /**
+     * 编号
+     */
     protected int num;
-    // SU目标文件夹
+    /**
+     * SU目标文件夹
+     */
     protected String targetDir = null;
-    // SU源目录
+    /**
+     * SU源目录
+     */
     protected String sourceDir = null;
-    // 默认编码格式
+    /**
+     * 默认编码格式 UTF-8
+     */
     protected final static String DEFAULT_CHARSET = "UTF-8";
+    /**
+     * 需要修改的文件
+     */
+    protected File modifyFile = null;
+    
+    /**
+     * 获取需要修改的文件
+     */
+    public File getModifyFile() {
+        return modifyFile;
+    }
+    
+    public void setModifyFile(File modifyFile) {
+        this.modifyFile = modifyFile;
+    }
 
     /**
      * 获取当前SU目标文件夹
      */
     protected abstract String getTargetDir();
 
-    public void setTargetDir(String targetDir) {
-        this.targetDir = targetDir;
-    }
-
     /**
      * 获取当前SU模块源目录
      */
     protected abstract String getSourceDir() ;
-
-    public void setSourceDir(String sourceDir) {
-        this.sourceDir = sourceDir;
-    }
 
     public File getTargetFile() {
         return new File(this.getTargetDir());
@@ -74,9 +100,20 @@ public abstract class SuCommand {
      * 
      * @return
      */
-    protected abstract Document getDocument();
+    public Document getDocument(){
+        try {
+            if(document != null){
+                return this.document;
+            } else {
+                this.document = reader.read(this.getModifyFile());
+            }
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return document;
+    }
 
-    protected void setDocument(Document document) {
+    public void setDocument(Document document) {
         this.document = document;
     }
 
@@ -104,6 +141,9 @@ public abstract class SuCommand {
         this.sourceServiceAssemblyDir = sourceServiceAssemblyDir;
     }
 
-    public abstract void execute();
+    public void execute() throws IOException {
+        // copy source dir
+        FileUtils.copyDirectory(getSourceFile(), getTargetFile());
+    }
 
 }

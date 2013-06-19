@@ -3,13 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.haycco.sagent</groupId>
   <artifactId>sa-generation-tool</artifactId>
-  <version>1.5.0-SNAPSHOT</version>
+  <version>1.6.0-SNAPSHOT</version>
   <name>Service Assemblies Generation Tool</name>
-  <url>https://github.com/haycco</url>  
+  <url>https://github.com/haycco/sa-generation-tool</url>  
   <description>Service Assemblies Generation Tool</description>
   
   <organization>
     <name>haycco</name>
+    <url>https://github.com/haycco</url>
   </organization>
   
   <developers>
@@ -26,7 +27,29 @@
       <name>Apache License, Version 2.0</name>
       <url>http://www.apache.org/license/LICENSE-2.0</url>
     </license>
-  </licenses>
+  </licenses> 
+    
+  <scm>
+    <url>scm:git:https://github.com/haycco/sa-generation-tool.git</url>
+    <developerConnection>scm:git:git@github.com:haycco/sa-generation-tool.git</developerConnection>
+    <tag>master</tag>
+    <connection>scm:git:https://github.com/haycco/sa-generation-tool.git</connection>
+  </scm>
+  
+  <mailingLists>
+    <mailingList>
+      <name>Sagent Developer List</name>
+      <post>haycco@gmail.com</post>
+      <subscribe>haycco@gmail.com</subscribe>
+      <unsubscribe>haycco@gmail.com</unsubscribe>
+      <archive>https://github.com/haycco/sa-generation-tool</archive>
+    </mailingList>
+  </mailingLists>
+  
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/haycco/sa-generation-tool</url>
+  </issueManagement>
 
   <dependencies>
     <dependency>
@@ -81,6 +104,20 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>2.4</version>
+        <configuration>
+          <instrumentation>
+            <excludes>
+              <exclude>org/haycco/sagent/main/*App*.class</exclude>
+            </excludes>
+          </instrumentation>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -93,21 +130,34 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.5</version>
+        <version>2.10</version>
         <configuration>
-          <configLocation>config/sun_checks.xml</configLocation>
+          <configLocation>src/main/resources/checkstyle/ygsoft_ii_checks.xml</configLocation>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>2.5</version>
+        <version>3.0.1</version>
+        <configuration>
+          <targetJdk>1.5</targetJdk>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9</version>
       </plugin>
     </plugins>
   </build>
   
   <reporting>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.15</version>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
@@ -116,18 +166,24 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>2.5</version>
+        <version>3.0.1</version>
         <configuration>
+          <targetJdk>1.5</targetJdk>
           <aggregate>true</aggregate>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.5</version>
+        <version>2.10</version>
         <configuration>
-          <configLocation>config/sun_checks.xml</configLocation>
+          <configLocation>src/main/resources/checkstyle/ygsoft_ii_checks.xml</configLocation>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9</version>
       </plugin>
     </plugins>
   </reporting>
@@ -136,5 +192,5 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
-  
+
 </project>

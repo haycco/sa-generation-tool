@@ -1,6 +1,6 @@
 /**
  * CopyRright (C) 2000-2013:   YGsoft Inc. All Rights Reserved.
- * Author：                                lgc                
+ * Author：                                haycco                
  * Create Date：                         2013-5-17 下午8:33:05   
  * Version:                                 1.0
  */
@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.dom4j.DocumentException;
@@ -44,10 +45,11 @@ import org.haycco.sagent.command.SuCommand;
  * Step 4. 重新打包
  * </p>
  * 
- * @author lgc
+ * @author haycco
  */
 public class GenServiceAssemblyUtil {
-
+    
+    private final static Logger log = Logger.getAnonymousLogger();
     /**
      * 程序运行时临时处理和输出文件夹
      */
@@ -61,19 +63,9 @@ public class GenServiceAssemblyUtil {
     public static void cleanTempDirectory() throws IOException {
         File tempDir = new File(TEMP_DIRECTORY);
         if (tempDir.exists()) {
-            System.out.println("清空以前的临时文件...");
+            log.info("清空以前的临时文件...");
             FileUtils.cleanDirectory(tempDir);
         }
-    }
-
-    /**
-     * 还原SU默认名称设置
-     */
-    public static void resetSUDefaultValue() {
-        ServiceUnit.JSR181.setName("servicemix-jsr181");
-        ServiceUnit.HTTP.setName("servicemix-http");
-        ServiceUnit.CAMEL.setName("servicemix-camel");
-        ServiceUnit.BEAN.setName("servicemix-bean");
     }
 
     /**
@@ -113,7 +105,7 @@ public class GenServiceAssemblyUtil {
         if(suNameMap.size()<=0) {
             throw new RuntimeException("该压缩包不是正确的服务组合件(SA)，请检查！");
         }
-        resetSUDefaultValue();
+        ServiceUnit.resetSUDefaultValue();
         refreshServiceUnit(suNameMap);
         
         // 解压目标SA
@@ -166,7 +158,7 @@ public class GenServiceAssemblyUtil {
         File file = new File(saZipFile);
         String saFileName = file.getName();
         String serviceAssemblyName = saFileName.substring(0, saFileName.indexOf("."));
-        System.out.println("需要批量生产的压缩包文件名为：" + saFileName + "\n共批量生成" + count + "个，起始编号为：" + startNum);
+        log.info("需要批量生产的压缩包文件名为：" + saFileName + "\n共批量生成" + count + "个，起始编号为：" + startNum);
         // 解压后的SA临时文件夹
         String destinationDir = TEMP_DIRECTORY + File.separator + serviceAssemblyName;
         // 解压SA及其内的所有SU组件并获取SU名称列表
@@ -182,7 +174,7 @@ public class GenServiceAssemblyUtil {
         // copy file
         for (int i = startNum; i < lenght; i++) {
             long start = System.currentTimeMillis();
-            System.out.println("正在处理编号为" + i + "的SA...");
+            log.info("正在处理编号为" + i + "的SA...");
             // 设置生产批号
             genServiceUnitInvoker.setNum(i);
             // 新复制SA的名字
@@ -209,7 +201,7 @@ public class GenServiceAssemblyUtil {
             FileUtils.deleteDirectory(new File(targetServiceAssemblyDir));
 
             long end = System.currentTimeMillis();
-            System.out.println("生产编号为" + i + "的SA共耗时:" + (end - start) / 1000.0 + "'s");
+            log.info("生产编号为" + i + "的SA共耗时:" + (end - start) / 1000.0 + "'s");
         }
 
         // the end clean all temp files

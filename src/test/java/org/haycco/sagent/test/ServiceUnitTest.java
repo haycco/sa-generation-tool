@@ -1,23 +1,16 @@
 package org.haycco.sagent.test;
 
+import static org.junit.Assert.assertEquals;
 
 import org.haycco.sagent.util.ServiceUnit;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
-public class ServiceUnitTest extends TestCase {
+public class ServiceUnitTest {
 
     @Before
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @After
-    protected void tearDown() throws Exception {
-        super.tearDown();
+    public void setUp() throws Exception {
+        ServiceUnit.resetSUDefaultValue();
     }
 
     @Test

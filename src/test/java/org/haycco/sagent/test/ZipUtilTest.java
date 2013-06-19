@@ -1,21 +1,20 @@
 package org.haycco.sagent.test;
 
-import java.util.Map;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.TestCase;
+import java.util.Map;
 
 import org.haycco.sagent.util.URLUtil;
 import org.haycco.sagent.util.ZipUtil;
 import org.junit.Test;
 
-public class ZipUtilTest extends TestCase {
+public class ZipUtilTest {
 
     private final static String RES_URL = URLUtil.getClassPath(ZipUtilTest.class)+ "\\template\\";
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-    }
 
     @Test
     public void testGetServiceUnitComponentNameMap() {
@@ -36,6 +35,13 @@ public class ZipUtilTest extends TestCase {
         assertTrue(mdmSuNameMap.keySet().contains("servicemix-http"));
         assertTrue(mdmSuNameMap.keySet().contains("servicemix-camel"));
         assertFalse(mdmSuNameMap.keySet().contains("servicemix-bean"));
+    }
+    
+    @Test(expected=RuntimeException.class)
+    public void testGetServiceUnitComponentNameMapFail() {
+        String mdmZipFile = RES_URL + "fail.zip";
+        Map<String, String> mdmSuNameMap = ZipUtil.getServiceUnitComponentNameMap(mdmZipFile);
+        assertNull(mdmSuNameMap);
     }
 
 }

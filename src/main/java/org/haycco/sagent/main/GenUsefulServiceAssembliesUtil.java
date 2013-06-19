@@ -1,12 +1,13 @@
 /**
  * CopyRright (C) 2000-2013:   YGsoft Inc. All Rights Reserved.
- * Author：                                                             lgc                
+ * Author：                                                             haycco                
  * Create Date：                                                2013-5-20 上午10:16:53   
  * Version:                       1.0
  */
 package org.haycco.sagent.main;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import org.dom4j.DocumentException;
 import org.haycco.sagent.util.GenServiceAssemblyUtil;
@@ -14,9 +15,11 @@ import org.haycco.sagent.util.GenServiceAssemblyUtil;
 /**
  * 提供可用的SA批量生成的调用定义
  * 
- * @author lgc
+ * @author haycco
  */
 public class GenUsefulServiceAssembliesUtil {
+    
+    private final static Logger log = Logger.getAnonymousLogger();
 
     /**
      * 批量生产MDM主数据SA
@@ -31,7 +34,7 @@ public class GenUsefulServiceAssembliesUtil {
         long start = System.currentTimeMillis();
         GenServiceAssemblyUtil.genServiceAssembly(saZipFile, count, startNum);
         long end = System.currentTimeMillis();
-        System.out.println("生成MDM共耗时:" + (end - start) / 1000.0 + "'s");
+        log.info("生成MDM共耗时:" + (end - start) / 1000.0 + "'s");
     }
 
     /**
@@ -51,7 +54,7 @@ public class GenUsefulServiceAssembliesUtil {
         long start = System.currentTimeMillis();
         GenServiceAssemblyUtil.genServiceAssembly(saZipFile, count, startNum);
         long end = System.currentTimeMillis();
-        System.out.println("生成基建报表共耗时:" + (end - start) / 1000.0 + "'s");
+        log.info("生成基建报表共耗时:" + (end - start) / 1000.0 + "'s");
     }
 
     /**
@@ -68,7 +71,7 @@ public class GenUsefulServiceAssembliesUtil {
         long start = System.currentTimeMillis();
         GenServiceAssemblyUtil.genServiceAssembly(saZipFile, count, startNum);
         long end = System.currentTimeMillis();
-        System.out.println("生成中电投吉电报表集成共耗时:" + (end - start) / 1000.0 + "'s");
+        log.info("生成中电投吉电报表集成共耗时:" + (end - start) / 1000.0 + "'s");
     }
     
     /**
@@ -85,7 +88,7 @@ public class GenUsefulServiceAssembliesUtil {
         long start = System.currentTimeMillis();
         GenServiceAssemblyUtil.genServiceAssembly(saZipFile, count, startNum);
         long end = System.currentTimeMillis();
-        System.out.println("生成员工报销共耗时:" + (end - start) / 1000.0 + "'s");
+        log.info("生成员工报销共耗时:" + (end - start) / 1000.0 + "'s");
     }
 
 }

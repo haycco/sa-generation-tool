@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class ZipUtilTest {
 
-    private final static String RES_URL = URLUtil.getClassPath(ZipUtilTest.class)+ "\\template\\";
+    private final static String RES_URL = URLUtil.getClassPath(ZipUtilTest.class)+ "\\testcase\\";
 
     @Test
     public void testGetServiceUnitComponentNameMap() {

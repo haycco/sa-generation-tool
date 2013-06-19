@@ -5,14 +5,14 @@
   <artifactId>sa-generation-tool</artifactId>
   <version>1.6.0-SNAPSHOT</version>
   <name>Service Assemblies Generation Tool</name>
-  <url>https://github.com/haycco/sa-generation-tool</url>  
+  <url>https://github.com/haycco/sa-generation-tool</url>
   <description>Service Assemblies Generation Tool</description>
-  
+
   <organization>
     <name>haycco</name>
     <url>https://github.com/haycco</url>
   </organization>
-  
+
   <developers>
     <developer>
       <id>haycco</id>
@@ -21,21 +21,21 @@
       <timezone>8</timezone>
     </developer>
   </developers>
-  
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
       <url>http://www.apache.org/license/LICENSE-2.0</url>
     </license>
-  </licenses> 
-    
+  </licenses>
+
   <scm>
     <url>scm:git:https://github.com/haycco/sa-generation-tool.git</url>
-    <developerConnection>scm:git:git@github.com:haycco/sa-generation-tool.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/haycco/sa-generation-tool.git</developerConnection>
     <tag>master</tag>
     <connection>scm:git:https://github.com/haycco/sa-generation-tool.git</connection>
   </scm>
-  
+
   <mailingLists>
     <mailingList>
       <name>Sagent Developer List</name>
@@ -45,10 +45,10 @@
       <archive>https://github.com/haycco/sa-generation-tool</archive>
     </mailingList>
   </mailingLists>
-  
+
   <issueManagement>
-    <system>github</system>
-    <url>https://github.com/haycco/sa-generation-tool</url>
+    <system>GitHub</system>
+    <url>https://github.com/haycco/sa-generation-tool/issues</url>
   </issueManagement>
 
   <dependencies>
@@ -95,9 +95,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.4</version>
-        <configuration>  
-          <source>1.5</source>  
-          <target>1.5</target>  
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
         </configuration>
       </plugin>
       <plugin>
@@ -150,7 +150,7 @@
       </plugin>
     </plugins>
   </build>
-  
+
   <reporting>
     <plugins>
       <plugin>
@@ -187,7 +187,7 @@
       </plugin>
     </plugins>
   </reporting>
-  
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

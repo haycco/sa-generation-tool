@@ -1,5 +1,7 @@
 Service Assemblies Generation Tool
 ==================================
+![Build Status](https://travis-ci.org/danielflower/maven-gitlog-plugin.png?branch=master)
+
 Name: sa-generation-tool(SA批量生成工具)
 
 Version 1.6
